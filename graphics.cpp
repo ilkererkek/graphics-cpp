@@ -35,8 +35,8 @@ class olcEngine3D : public olcConsoleGameEngine
 		mat4x4 projMat;
 
 		float fTheta;
-
-		void MultiplyMatrixVector(vec3d& i, vec3d& o, mat4x4& m)
+		//Multiplies 4x4 projection matrix with 3x1 Vector.
+		void ProjMul(vec3d& i, vec3d& o, mat4x4& m)
 		{
 			//Epsilon to prevent division by zero errors.
 			float fEpsilon = 0.000001f;
@@ -119,21 +119,21 @@ class olcEngine3D : public olcConsoleGameEngine
 			{
 				triangle triProjected, triTranslated, triRotatedZ, triRotatedZX;
 
-				MultiplyMatrixVector(tri.vectors[0], triRotatedZ.vectors[0], matRotZ);
-				MultiplyMatrixVector(tri.vectors[1], triRotatedZ.vectors[1], matRotZ);
-				MultiplyMatrixVector(tri.vectors[2], triRotatedZ.vectors[2], matRotZ);
-				MultiplyMatrixVector(triRotatedZ.vectors[0], triRotatedZX.vectors[0], matRotX);
-				MultiplyMatrixVector(triRotatedZ.vectors[1], triRotatedZX.vectors[1], matRotX);
-				MultiplyMatrixVector(triRotatedZ.vectors[2], triRotatedZX.vectors[2], matRotX);
+				ProjMul(tri.vectors[0], triRotatedZ.vectors[0], matRotZ);
+				ProjMul(tri.vectors[1], triRotatedZ.vectors[1], matRotZ);
+				ProjMul(tri.vectors[2], triRotatedZ.vectors[2], matRotZ);
+				ProjMul(triRotatedZ.vectors[0], triRotatedZX.vectors[0], matRotX);
+				ProjMul(triRotatedZ.vectors[1], triRotatedZX.vectors[1], matRotX);
+				ProjMul(triRotatedZ.vectors[2], triRotatedZX.vectors[2], matRotX);
 
 				triTranslated = triRotatedZX;
 				triTranslated.vectors[0].z = triRotatedZX.vectors[0].z + 3.0f;
 				triTranslated.vectors[1].z = triRotatedZX.vectors[1].z + 3.0f;
 				triTranslated.vectors[2].z = triRotatedZX.vectors[2].z + 3.0f;
 
-				MultiplyMatrixVector(triTranslated.vectors[0], triProjected.vectors[0], projMat);
-				MultiplyMatrixVector(triTranslated.vectors[1], triProjected.vectors[1], projMat);
-				MultiplyMatrixVector(triTranslated.vectors[2], triProjected.vectors[2], projMat);
+				ProjMul(triTranslated.vectors[0], triProjected.vectors[0], projMat);
+				ProjMul(triTranslated.vectors[1], triProjected.vectors[1], projMat);
+				ProjMul(triTranslated.vectors[2], triProjected.vectors[2], projMat);
 
 				triProjected.vectors[0].x += 1.0f; triProjected.vectors[0].y += 1.0f;
 				triProjected.vectors[1].x += 1.0f; triProjected.vectors[1].y += 1.0f;
