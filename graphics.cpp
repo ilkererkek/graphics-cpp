@@ -36,7 +36,7 @@ class olcEngine3D : public olcConsoleGameEngine
 
 		float fTheta;
 		//Multiplies 4x4 projection matrix with 3x1 Vector.
-		void ProjMul(vec3d& i, vec3d& o, mat4x4& m)
+		void ProjMatMul(vec3d& i, vec3d& o, mat4x4& m)
 		{
 			//Epsilon to prevent division by zero errors.
 			float fEpsilon = 0.000001f;
