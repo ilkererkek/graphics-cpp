@@ -220,9 +220,9 @@ class olcEngine3D : public olcConsoleGameEngine
 				MatMul(triRotatedZ.vectors[2], triRotatedZX.vectors[2], matRotX);
 				//Offset to screen
 				triTranslated = triRotatedZX;
-				triTranslated.vectors[0].z = triRotatedZX.vectors[0].z + 3.0f;
-				triTranslated.vectors[1].z = triRotatedZX.vectors[1].z + 3.0f;
-				triTranslated.vectors[2].z = triRotatedZX.vectors[2].z + 3.0f;
+				triTranslated.vectors[0].z = triRotatedZX.vectors[0].z + 13.0f;
+				triTranslated.vectors[1].z = triRotatedZX.vectors[1].z + 13.0f;
+				triTranslated.vectors[2].z = triRotatedZX.vectors[2].z + 13.0f;
 
 				//Calculate surface normal.
 				vec3d normal, line1, line2;
